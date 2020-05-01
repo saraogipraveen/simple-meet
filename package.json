@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "deploy": "react-app-rewired build && netlify deploy --prod --dir=./build",
+    "deploy": "git push origin master && react-app-rewired build && netlify deploy --prod --dir=./build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
