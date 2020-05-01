@@ -1,32 +1,36 @@
 import React from 'react';
 import './App.css';
 import Login from './components/login';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, PageHeader } from 'antd';
+import Signup from './components/signup';
+import ResetPassword from './components/reset-password';
+import Home from './components/home';
 
 const { Header, Content, Footer } = Layout;
 
 function AuthenticatedApp() {
+  const logoStyle = {
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    background: "rgba(255, 255, 255, 0.2)",
+    margin: "16px 24px 16px 0",
+    cssFloat: "right"
+  }
+
   return (
-    <>
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
+    <Layout style={{ height: "100vh" }}>
+      <Header style={{ position: 'fixed', zIndex: 1, height: '72px', width: '100%' }}>
+        <div className="logo" style={{ ...logoStyle }} />
       </Header>
-      <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
+      <Content className="site-layout" style={{ padding: '0 0', marginTop: 64 }}>
         <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
-          Content
-    </div>
+          <Home />
+        </div>
       </Content>
-    </>
+      <Footer style={{ textAlign: 'center' }}>Simple Meet ©2019 Created by Praveen Saraogi</Footer>
+
+    </Layout>
   )
 }
 
@@ -37,21 +41,16 @@ function UnAuthenticatedApp() {
     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
 
       <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
-        <Login />
-
+        <ResetPassword />
       </div>
     </Content>
   )
 }
 
 function App() {
-  const user = false;
-  return (
-    <Layout>
-{      user ? <AuthenticatedApp /> : <UnAuthenticatedApp />}
-      <Footer style={{ textAlign: 'center' }}>Simple Meet ©2019 Created by Praveen Saraogi</Footer>
-    </Layout>
-  );
+  const user = true;
+  return user ? <AuthenticatedApp /> : <UnAuthenticatedApp />
+
 }
 
 export default App;
